@@ -875,13 +875,12 @@ var NOMOR = "6285609734971";
 var KURANG = {11:25000, 23:25000};
 
 /* ===== KELOMPOK MOTOR: ubah kata kunci di sini kalau ada yang salah tempat ===== */
-var TAB = ["Matic", "Sport", "Cub", "EV"]; /* BigBike sengaja tidak ditampilkan */
+var TAB = ["Matic", "Sport", "Cub", "EV"];
 var KELOMPOK = [
   ["EV", ["icon e", "em1", "cuv"]],
-  ["BigBike", ["monkey", "crf 250", "forza"]],
-  ["Matic", ["beat", "genio", "scoopy", "vario", "stylo", "pcx", "adv"]],
-  ["Sport", ["sonic", "verza", "gtr", "cb 150", "cb150", "cbr 150", "cbr 250", "crf 150"]],
-  ["Cub", ["revo", "supra", "super cub", "ct 125", "st125"]]
+  ["Matic", ["beat", "genio", "scoopy", "vario", "stylo", "pcx", "adv", "forza"]],
+  ["Sport", ["sonic", "verza", "gtr", "cb 150", "cb150", "cbr 150", "cbr 250", "crf 150", "crf 250"]],
+  ["Cub", ["revo", "supra", "super cub", "ct 125", "st125", "monkey"]]
 ];
 function kelompok(nama){
   var n = nama.toLowerCase();
@@ -1159,7 +1158,7 @@ mulai();dariHash();
 
 </script>
 <script>
-var APP_VER='2026-10-13.15';
+var APP_VER='2026-10-25.2';
 (function(){
   var uv=document.getElementById('uv'),ub=document.getElementById('upd'),nb=document.getElementById('nb');
   if(!uv||!ub||!nb)return;
@@ -1330,6 +1329,7 @@ var asli=window.tampilProduk;window.tampilProduk=function(k){asli(k);dekor()};de
 })();
 </script>
 <script>(function(){document.querySelectorAll("img[data-info]").forEach(function(e){var k=e.getAttribute("data-info");e.loading="lazy";e.decoding="async";e.src="info-"+k+".jpg"})})();</script>
+<script src="showroom-bot.js" defer></script>
 </body>
 </html>
 
