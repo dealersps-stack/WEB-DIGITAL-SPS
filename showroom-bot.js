@@ -61,9 +61,10 @@
       "#sb-msgs{flex:1;overflow-y:auto;padding:12px;background:#f3f3f3}" +
       ".sb-m{max-width:88%;margin:0 0 8px;padding:8px 11px;border-radius:12px;background:#fff;word-wrap:break-word}" +
       ".sb-u{margin-left:auto;background:#c8102e;color:#fff}" +
-      "#sb-btns{display:flex;flex-direction:column;gap:6px;max-height:38%;overflow-y:auto;padding:8px;border-top:1px solid #e3e3e3}" +
-      "#sb-btns button,#sb-btns a{display:block;text-align:left;text-decoration:none;border:1.5px solid #c8102e;border-radius:10px;background:#fff;color:#c8102e;padding:8px 11px;font:600 14px system-ui,sans-serif;cursor:pointer}" +
+      "#sb-btns{display:flex;flex-wrap:wrap;align-content:flex-start;gap:6px;max-height:44%;overflow-y:auto;padding:8px;border-top:1px solid #e3e3e3}" +
+      "#sb-btns button,#sb-btns a{display:block;flex:1 1 100%;text-align:left;text-decoration:none;border:1.5px solid #c8102e;border-radius:10px;background:#fff;color:#c8102e;padding:8px 11px;font:600 14px system-ui,sans-serif;cursor:pointer}" +
       "#sb-btns a.sb-wa{background:#128c4a;border-color:#128c4a;color:#fff}" +
+      "#sb-btns .sb-half{flex:1 1 calc(50% - 3px)}" +
       "#sb-f{display:flex;gap:6px;padding:8px;border-top:1px solid #e3e3e3}" +
       "#sb-in{flex:1;min-width:0;border:1.5px solid #bbb;border-radius:10px;padding:8px 10px;font:16px system-ui,sans-serif}" +
       "#sb-go{border:0;border-radius:10px;background:#c8102e;color:#fff;padding:0 14px;font:700 14px system-ui,sans-serif;cursor:pointer}" +
@@ -101,6 +102,7 @@
         el.textContent = b.t;
         if (b.href) { el.href = b.href; el.target = "_blank"; el.rel = "noopener"; el.className = "sb-wa"; }
         else { el.type = "button"; el.onclick = b.f; }
+        if (b.half) el.classList.add("sb-half");
         btns.appendChild(el);
       });
     }
@@ -109,13 +111,18 @@
 
     /* ===== alur ===== */
     function menu() {
-      say("Halo! Saya asisten Honda SPS. Mau cari motor, hitung kredit, atau tanya harga cash? Bisa juga ketik nama motor, misalnya <b>vario 160</b>.");
+      say("Halo! Saya asisten Honda SPS. Mau cari motor, hitung kredit, atau tanya harga cash? Info syarat beli, bonus, garansi, dan tukar tambah juga ada. Bisa juga ketik nama motor, misalnya <b>vario 160</b>.");
       setBtns([
         { t: "Lihat motor, harga, dan warna", f: function () { say("Lihat motor", 1); pilihMotor(info); } },
-        { t: "Simulasi kredit", f: function () { say("Simulasi kredit", 1); pilihMotor(kredit); } },
-        { t: "Harga cash", f: function () { say("Harga cash", 1); pilihMotor(cash); } },
+        { t: "Simulasi kredit", half: 1, f: function () { say("Simulasi kredit", 1); pilihMotor(kredit); } },
+        { t: "Harga cash", half: 1, f: function () { say("Harga cash", 1); pilihMotor(cash); } },
         { t: "Diskon, DP, atau nego angsuran", f: function () { say("Diskon, DP, atau nego angsuran", 1); nego(); } },
-        { t: "Lihat halaman promo", f: function () { goPage("promo"); } }
+        { t: "Beli cash", half: 1, f: function () { say("Beli cash", 1); syaratCash(); } },
+        { t: "Beli kredit", half: 1, f: function () { say("Beli kredit", 1); syaratKredit(); } },
+        { t: "Bonus", half: 1, f: function () { say("Bonus", 1); bonus(); } },
+        { t: "Garansi", half: 1, f: function () { say("Garansi", 1); garansi(); } },
+        { t: "Tukar tambah", half: 1, f: function () { say("Tukar tambah", 1); tukar(); } },
+        { t: "Halaman promo", half: 1, f: function () { goPage("promo"); } }
       ]);
     }
     function pilihMotor(next) {
@@ -188,6 +195,64 @@
       ]);
     }
 
+    /* ===== info pembelian (isi sama dengan halaman Cash, Kredit, Bonus, Garansi, Tukar Tambah di index.html) ===== */
+    function syaratCash() {
+      ctx.dp = false;
+      say("<b>Pembelian cash</b><br>Dokumen yang disiapkan:<br>• KTP pemohon, sesuai nama yang akan tercantum di STNK dan BPKB<br>• Kartu Keluarga<br>• Share lokasi rumah pengiriman<br><small>Diskon atau promo cash berbeda tiap periode dan stok, dikonfirmasi oleh sales.</small>");
+      setBtns([
+        { t: "Lihat harga cash per unit", f: function () { say("Harga cash", 1); pilihMotor(cash); } },
+        { t: "Tanya sales lewat WhatsApp", href: wa("Halo Honda SPS, saya mau beli motor secara cash. Mohon info syarat dan promonya.") },
+        { t: "Halaman lengkap beli cash", f: function () { goPage("cash"); } },
+        home
+      ]);
+    }
+    function syaratKredit() {
+      ctx.dp = false;
+      say("<b>Pembelian kredit</b><br>Dokumen yang diperlukan:<br>• KTP pemohon, sesuai nama di STNK dan BPKB, dan satu KK dengan pemohon<br>• KTP pasangan jika sudah menikah, atau KTP penjamin jika belum menikah (bisa KTP orang tua). Duda atau janda: akta kematian atau akta perceraian<br>• Kartu Keluarga atau akta perkawinan, jika belum satu KK<br>• Share lokasi rumah tinggal, terutama jika berbeda dengan alamat di KTP<br><small>Persetujuan akhir mengikuti leasing.</small>");
+      setBtns([
+        { t: "Simulasi kredit", f: function () { say("Simulasi kredit", 1); pilihMotor(kredit); } },
+        { t: "Tanya sales lewat WhatsApp", href: wa("Halo Honda SPS, saya mau beli motor secara kredit. Mohon info syarat dan proses pengajuannya.") },
+        { t: "Halaman lengkap beli kredit", f: function () { goPage("kredit"); } },
+        home
+      ]);
+    }
+    function bonus() {
+      ctx.dp = false;
+      say("<b>Bonus pembelian motor Honda</b><br>Secara umum mendapat:<br>• Helm<br>• Jaket<br>• Toolset (kunci busi dan pas)<br>• STCK / surat jalan<br>• Buku pedoman (garansi dan service)<br>• Plat holder<br>• Jas hujan (ponco)<br>Untuk tipe dan program tertentu:<br>• Spion lampu<br>• Karpet<br>• Jaket exclusive<br><small>Bonus bisa berbeda tiap tipe dan program, konfirmasikan ke sales.</small>");
+      setBtns([
+        { t: "Tanya bonus unit saya lewat WhatsApp", href: wa("Halo Honda SPS, saya mau tanya bonus pembelian untuk motor yang saya incar.") },
+        { t: "Halaman lengkap bonus", f: function () { goPage("bonus"); } },
+        home
+      ]);
+    }
+    function garansi() {
+      ctx.dp = false;
+      say("<b>Garansi motor Honda</b><br>• Rangka: 5 tahun tanpa batas kilometer<br>• Sistem PGM-FI (injeksi): 5 tahun atau 60.000 km<br>• Mesin: 3 tahun atau 36.000 km<br>• Kelistrikan dan komponen umum (smart key, ECU, speedometer): 1 tahun atau 12.000 km<br>• Motor listrik (baterai dan unit motor): 2 tahun<br><small>Untuk batas km, berlaku mana yang tercapai terlebih dahulu.</small>");
+      setBtns([
+        { t: "Tanya garansi lewat WhatsApp", href: wa("Halo Honda SPS, saya mau tanya soal garansi motor Honda.") },
+        { t: "Halaman lengkap garansi", f: function () { goPage("garansi"); } },
+        home
+      ]);
+    }
+    function tukar() {
+      ctx.dp = false;
+      say("<b>Tukar tambah</b><br>Bisa untuk segala jenis motor. Yang disiapkan: foto motor dan STNK.<br>Prosesnya:<br>1. Kabari kami kalau mau tukar tambah<br>2. Kirim foto unit dari segala sisi dan foto odometer (boleh sebut harga harapan)<br>3. Estimasi harga beli kami informasikan<br>4. Kalau setuju, atur janji cek unit<br>5. Saat cek unit, pembayaran langsung di tempat; uangnya bisa dijadikan DP seluruhnya atau sebagian<br><small>Siapkan juga kelengkapan dan surat-surat kendaraan.</small>");
+      setBtns([
+        { t: "Kirim foto motor lewat WhatsApp", href: wa("Halo Honda SPS, saya mau tukar tambah motor. Berikut foto unit dan odometernya. Mohon estimasi harga belinya.") },
+        { t: "Halaman lengkap tukar tambah", f: function () { goPage("tukar"); } },
+        home
+      ]);
+    }
+    function pilihSyarat() {
+      ctx.dp = false;
+      say("Mau lihat syarat pembelian yang mana?");
+      setBtns([
+        { t: "Syarat beli cash", f: function () { say("Beli cash", 1); syaratCash(); } },
+        { t: "Syarat beli kredit", f: function () { say("Beli kredit", 1); syaratKredit(); } },
+        home
+      ]);
+    }
+
     /* ===== ketikan bebas (tanpa AI): angka DP, kata kunci, atau nama motor ===== */
     function ketik(t) {
       t = String(t || "").trim(); if (!t) return;
@@ -195,6 +260,14 @@
       var n = norm(t);
       if (ctx.dp && ctx.m) { var v = parseRp(t); if (v) { hasil(ctx.m, v); return; } }
       if (/diskon|nego|potongan|tawar|dp kurang|dp murah/.test(n)) return nego();
+      if (/bonus|hadiah/.test(n)) return bonus();
+      if (/garansi/.test(n)) return garansi();
+      if (/tukar|trade in|\btt\b/.test(n)) return tukar();
+      if (/syarat|dokumen|berkas|ktp|\bkk\b/.test(n)) {
+        if (/kredit|cicil|angsur/.test(n)) return syaratKredit();
+        if (/\b(cash|tunai)\b/.test(n)) return syaratCash();
+        return pilihSyarat();
+      }
       if (/\b(cash|tunai)\b/.test(n)) return pilihMotor(cash);
       if (/kredit|cicil|angsur|simulasi/.test(n)) return pilihMotor(kredit);
       var tok = n.split(" ").filter(Boolean);
