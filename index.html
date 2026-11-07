@@ -974,7 +974,7 @@ h2.judulproduk{margin:0;font-size:30px;letter-spacing:-.7px}
   window.addEventListener("load",function(){ setTimeout(function(){ warm(1); play(); },2500); });
 })();
 </script>
-<header class="hero2 hero-carousel"><div class="h2-inner"><div class="h2-text"><h1 id="judul">Lagi cari motor Honda di Godean, Yogyakarta?</h1><p>Lihat harga OTR, pilihan warna, dan hitung cicilan sebelum datang ke dealer.</p><div class="h2-btns"><button class="b-red" onclick="location.hash='#product'">Lihat katalog</button><button class="b-line" onclick="location.hash='#simulasi'">Hitung cicilan</button></div></div><div class="h2-bike"><button class="hc-arrow hc-prev" id="hc-prev" type="button" aria-label="Motor sebelumnya">‹</button><div class="hc-stage" id="hc-stage"><img id="hero-bike" alt="Honda Vario 160" width="620" height="360"><div class="hc-loading" id="hc-loading">Memuat motor…</div></div><button class="hc-arrow hc-next" id="hc-next" type="button" aria-label="Motor berikutnya">›</button><button class="hc-auto" id="hc-auto" type="button" aria-pressed="false" aria-label="Jeda gerak otomatis" title="Jeda / putar gerak otomatis"><svg class="ic-pause" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="3.4" height="12" rx="1"/><rect x="9.6" y="2" width="3.4" height="12" rx="1"/></svg><svg class="ic-play" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.2v11.6a.6.6 0 0 0 .9.5l9-5.8a.6.6 0 0 0 0-1L4.9 1.7a.6.6 0 0 0-.9.5z"/></svg></button><div class="hc-info"><div><h2 id="hc-name">Honda Vario 160 ABS</h2><p id="hc-color">Pilihan warna</p></div><div class="hc-count"><strong id="hc-index">27</strong><span>/ 60</span></div></div><div class="hc-swatches" id="hc-swatches"></div><div class="hc-progress"><span id="hc-progress-fill"></span></div><div class="hc-hint">Geser ke kiri/kanan untuk melihat semua 60 unit &amp; varian</div></div></div></header>
+<header class="hero2 hero-carousel"><div class="h2-inner"><div class="h2-text"><h1 id="judul">Lagi cari motor Honda di Godean, Yogyakarta?</h1><p>Lihat harga OTR, pilihan warna, dan hitung cicilan sebelum datang ke dealer.</p><div class="h2-btns"><button class="b-red" onclick="location.hash='#product'">Lihat katalog</button><button class="b-line" onclick="location.hash='#simulasi'">Hitung cicilan</button><a id="wa-hero" class="b-wa" href="https://wa.me/6285609734971?text=Halo%20Honda%20SPS%2C%20saya%20lihat%20web%20dan%20ingin%20tanya%20promo%20motor%20Honda%20terbaru." target="_blank" rel="noopener">Tanya Promo via WhatsApp</a></div></div><div class="h2-bike"><button class="hc-arrow hc-prev" id="hc-prev" type="button" aria-label="Motor sebelumnya">‹</button><div class="hc-stage" id="hc-stage"><img id="hero-bike" alt="Honda Vario 160" width="620" height="360"><div class="hc-loading" id="hc-loading">Memuat motor…</div></div><button class="hc-arrow hc-next" id="hc-next" type="button" aria-label="Motor berikutnya">›</button><button class="hc-auto" id="hc-auto" type="button" aria-pressed="false" aria-label="Jeda gerak otomatis" title="Jeda / putar gerak otomatis"><svg class="ic-pause" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="3.4" height="12" rx="1"/><rect x="9.6" y="2" width="3.4" height="12" rx="1"/></svg><svg class="ic-play" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.2v11.6a.6.6 0 0 0 .9.5l9-5.8a.6.6 0 0 0 0-1L4.9 1.7a.6.6 0 0 0-.9.5z"/></svg></button><div class="hc-info"><div><h2 id="hc-name">Honda Vario 160 ABS</h2><p id="hc-color">Pilihan warna</p></div><div class="hc-count"><strong id="hc-index">27</strong><span>/ 60</span></div></div><div class="hc-swatches" id="hc-swatches"></div><div class="hc-progress"><span id="hc-progress-fill"></span></div><div class="hc-hint">Geser ke kiri/kanan untuk melihat semua 60 unit &amp; varian</div></div></div></header>
 <div class="h2-stat"><div class="h2-stat-in"><div class="h2-stat-l"><div class="h2-num">60</div><div><h2>Cari berdasarkan jenis</h2><p>Ketuk salah satu untuk langsung ke daftarnya.</p></div></div><div class="h2-chips">
 <button class="h2-chip" onclick="goKat('Matic')"><span><img width="300" height="260" data-unit="vario 125 street" alt=""></span>Matic</button>
 <button class="h2-chip" onclick="goKat('Cub')"><span><img width="300" height="260" data-unit="super cub" alt=""></span>Cub</button>
@@ -1230,7 +1230,7 @@ d.onclick=pilihWarna;d.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.
     var aksi=document.createElement("div");aksi.className="aksi-kartu";
     var detail=document.createElement("button");detail.className="btn-outline";detail.textContent="Lihat detail";detail.onclick=function(){bukaSpek(idx);};
     var sim=document.createElement("button");sim.className="btn-red";sim.textContent="Simulasi kredit";sim.onclick=function(){pilih(idx);};
-    aksi.appendChild(detail);aksi.appendChild(sim);
+    aksi.appendChild(detail);aksi.appendChild(sim);var wk=document.createElement("a");wk.className="wa-kartu";wk.target="_blank";wk.rel="noopener";wk.href="https://wa.me/"+NOMOR+"?text="+encodeURIComponent("Halo Honda SPS, saya tertarik dengan Honda "+m.n+". Harga OTR "+rp(m.o)+". Mohon info stok, pilihan warna, dan simulasi kreditnya.");wk.textContent="Tanya via WhatsApp";aksi.appendChild(wk);
     kotak.appendChild(gambar);kotak.appendChild(kategori);kotak.appendChild(nama);kotak.appendChild(harga);if(cicil.textContent)kotak.appendChild(cicil);kotak.appendChild(dots);kotak.appendChild(keterangan);kotak.appendChild(aksi);grid.appendChild(kotak);
   });
   $("jumlah-produk").textContent=jumlah+" pilihan ditampilkan dari "+D.m.length+" unit dan varian";
@@ -1701,6 +1701,10 @@ var asli=window.tampilProduk;window.tampilProduk=function(k){asli(k);dekor()};de
 </script>
 
 
+<style id="wa-baru">
+.aksi-kartu a.wa-kartu{display:flex;justify-content:center;align-items:center;padding:10px;font-size:13px;font-weight:800;border-radius:4px;background:#16a34a;color:#fff;text-decoration:none;text-align:center}
+.h2-btns .b-wa{grid-column:1/-1;display:inline-flex;justify-content:center;align-items:center;min-height:52px;padding:13px 18px;border-radius:4px;background:#16a34a;color:#fff;font-weight:800;font-size:15px;text-decoration:none;text-align:center}
+</style>
 <!-- Pelacak klik tombol (GA4) + Microsoft Clarity -->
 <script>
 (function(){
@@ -1710,8 +1714,10 @@ var asli=window.tampilProduk;window.tampilProduk=function(k){asli(k);dekor()};de
   }
   function namaWA(el){
     if(el.id==="wa-fab") return "wa_melayang";
+    if(el.id==="wa-hero") return "wa_beranda";
+    if(el.classList.contains("wa-kartu")) return "wa_kartu_motor";
     if(el.id==="spek-wa") return "wa_spesifikasi";
-    if(el.id==="wa") return "wa_utama";
+    if(el.id==="wa") return "wa_simulasi";
     var t="";
     try{ t=decodeURIComponent((el.getAttribute("href").split("text=")[1]||"")).toLowerCase(); }catch(x){}
     if(t.indexOf("promo")>-1) return "wa_promo";
@@ -1723,12 +1729,16 @@ var asli=window.tampilProduk;window.tampilProduk=function(k){asli(k);dekor()};de
   document.addEventListener("click",function(e){
     try{
       var el=e.target.closest("a,button"); if(!el||typeof gtag!=="function") return;
-      var href=el.getAttribute("href")||"", nama, jenis;
-      if(/wa\.me|whatsapp\.com/.test(href)){ jenis="whatsapp"; nama=namaWA(el); }
+      var href=el.getAttribute("href")||"", nama, jenis, unit="";
+      if(/wa\.me|whatsapp\.com/.test(href)){ jenis="whatsapp"; nama=namaWA(el); var kw=el.closest("article.item"); if(kw){ var h3=kw.querySelector("h3"); unit=h3?h3.textContent.trim().slice(0,50):""; } }
       else if(el.id&&el.id.indexOf("nav-")===0){ jenis="menu"; nama="menu_"+el.id.slice(4); }
       else if(el.getAttribute("data-go")){ jenis="menu"; nama="menu_"+el.getAttribute("data-go"); }
-      else{ jenis="tombol"; nama=(el.id||el.getAttribute("aria-label")||(el.textContent||"").trim()||"tanpa_nama").slice(0,40); }
-      gtag("event","klik_tombol",{nama_tombol:nama,jenis_tombol:jenis});
+      else{
+        var kt=el.closest("article.item");
+        if(kt){ jenis="unit"; nama=(el.textContent||"").trim().toLowerCase().replace(/\s+/g,"_").slice(0,30); var h=kt.querySelector("h3"); unit=h?h.textContent.trim().slice(0,50):""; }
+        else{ jenis="tombol"; nama=(el.id||el.getAttribute("aria-label")||(el.textContent||"").trim()||"tanpa_nama").slice(0,40); }
+      }
+      var par={nama_tombol:nama,jenis_tombol:jenis}; if(unit) par.nama_unit=unit; gtag("event","klik_tombol",par);
     }catch(x){}
   },true);
 })();
